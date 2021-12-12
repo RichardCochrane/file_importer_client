@@ -1,0 +1,30 @@
+<form class="upload_form" action="{% url 'import_file_view' %}" enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  <header>
+    <h2>Upload a File</h2>
+  </header>
+
+  <section>
+    <div {% if missing_file %}class="error"{% endif %}>
+      <label for="vat_file">Choose a file with transaction data to upload</label>
+      <input type="file" name="vat_file" id="vat_file_upload">
+      {% if missing_file %}
+        <p class="error">Required</p>
+      {% endif %}
+    </div>
+
+    <div>
+        <input type="checkbox" name="ignore_first_row" id="ignore_first_row" checked>
+        <label for="ignore_first_row">Ignore first row (headings)</label>
+      </div>
+
+    <div>
+      <input type="checkbox" name="ignore_errors" id="ignore_errors">
+      <label for="ignore_errors">Ignore errors and import all valid transactions</label>
+    </div>
+
+    <div>
+      <button type="submit" value="upload" name="submit">Import File</button>
+    </div>
+  </section>
+</form>

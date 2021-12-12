@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <title>VAT Wizard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
+
+  <body>
+    <div class="wrapper">
+      <div class="logo narrow">
+        <a href="{% url 'home_view' %}"><img src="{% static 'website/images/vat_wizard.jpg' %}" alt="VAT Wizard"></a>
+
+        <h1>VAT Wizard</h1>
+      </div>
+
+      <header>
+        <h1>Import Results</h1>
+        <nav>
+          <a href="{% url 'home_view' %}">Home</a>
+        </nav>
+      </header>
+      {% if state == 'successful_attempt' %}
+        {% if successful_import %}
+          <div class="success_notice">
+            <img src="{% static 'website/images/import_success.jpg' %}" alt="Import succeeded">
+
+            <p>{{ message }}</p>
+          </div>
+        {% else %}
+          <div class="error_notice">
+            <img src="{% static 'website/images/import_errors.jpeg' %}" alt="Import failed">
+
+            <p>{{ message }}</p>
+
+            <p>
+              The following rows were invalid
+              {% if import_errors|length >= 20 %}(only the first 20 are shown){% endif %}:
+            </p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Row</th>
+                  <th class="left">Value</th>
+                  <th class="left">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row_id, value, error in import_errors %}
+                  <tr>
+                    <td>{{ row_id }}</td>
+                    <td class="left">{{ value }}</td>
+                    <td class="left">{{ error }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+      {% elif state == 'security_fail' %}
+        {% include 'snippets/api_security_failure.html' %}
+      {% elif state == 'server_error' %}
+        {% include 'snippets/api_error.html' %}
+      {% endif %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+/* RESET CSS */
+p, h1, h2, label, a, table, div {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+  size: 32px;
+}
+
+
+/* GENERAL PAGE LAYOUT COMPONENTS */
+p.error {
+  color: #F00;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 960px;
+}
+
+/* LOGO */
+.logo {
+  margin: 50px auto;
+  text-align: center;
+  width: 500px;
+}
+.logo img {
+  height: 300px;
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.logo h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  color: #668cff;
+}
+
+.logo.narrow {
+  border-bottom: #668cff 3px solid;
+  display: inline-block;
+  margin: 5px 0 50px;
+  vertical-align:text-top;
+  width: 100%;
+}
+
+.logo.narrow img {
+  height: 100px;
+  margin-bottom: 0;
+  width: 100px;
+}
+
+.logo.narrow h1 {
+  color: #668cff;
+  display: inline-block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 5em;
+  margin: 0;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+header nav a,
+header nav a:visited {
+  color: #668cff;
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+}
+table thead tr {
+  background-color: #668cff;
+  color: #ffffff;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table th.left,
+table td.left {
+  text-align: left;
+}
+
+table th.center,
+table td.center {
+  text-align: center;
+}
+
+table th.right,
+table td.right {
+  text-align: right;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #d6dff8;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+
+/* SPECIFIC PAGE STYLING */
+.success_notice {
+  margin: 50px auto;
+  text-align: center;
+  width: 500px;
+}
+
+form {
+  border: 2px solid #668cff;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  width: 45%;
+}
+
+form.upload_form {
+    margin-right: 20px;
+}
+
+form header {
+  background-color: #668cff;
+  border-radius: 5px 5px 0 0;
+  color: #FFF;
+  margin: 0;
+  padding: 5px 20px;
+}
+
+form header h2 {
+  margin: 0;
+  padding: 0;
+}
+
+form section {
+  padding: 20px;
+}
+
+form div {
+  clear: both;
+  display: block;
+  margin-bottom: 20px;
+}
+
+form div:last-child {
+  margin-bottom: 0;
+}
+
+form #vat_file_upload {
+  clear: both;
+  display: block;
+  margin-top: 10px;
+}
+
+form label {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+form button {
+  border: 2px solid #668cff;
+  background-color: #668cff;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 10px;
+}
+
+form.query_form input {
+    display: block;
+}
+
+.error_notice,
+.failure_notice {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.error_notice p,
+.failure_notice p {
+  text-align: left;
+}
+
+.error_notice img {
+  height: 150px;
+}
+
+.failure_notice img {
+  height: 300px;
+}
+
+.error input {
+  border: 1px solid #F00;
+}

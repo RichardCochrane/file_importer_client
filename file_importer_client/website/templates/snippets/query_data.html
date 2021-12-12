@@ -1,0 +1,28 @@
+<form class="query_form" action="{% url 'query_data_view' %}" method="GET">
+    {% csrf_token %}
+    <header>
+      <h2>Query Transaction Data</h2>
+    </header>
+
+    <section>
+      <div {% if missing_country %}class="error"{% endif %}>
+        <label for="country_code">Enter a country code (eg. US, ZA, EU):</label>
+        <input type="text" name="country_code" id="country_code">
+        {% if missing_country %}
+          <p class="error">Required</p>
+        {% endif %}
+      </div>
+
+      <div {% if missing_date %}class="error"{% endif %}>
+        <label for="query_date">Enter a date to filter transactions on (format: YYYY/MM/DD):</label>
+        <input type="text" name="query_date" id="query_date">
+        {% if missing_date %}
+          <p class="error">Required</p>
+        {% endif %}
+      </div>
+
+      <div>
+        <button type="submit" value="query" name="submit">Query Transactions</button>
+      </div>
+    </section>
+  </form>

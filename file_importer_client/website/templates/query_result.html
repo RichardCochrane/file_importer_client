@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <title>VAT Wizard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
+
+  <body>
+    <div class="wrapper">
+      <div class="logo narrow">
+        <a href="{% url 'home_view' %}"><img src="{% static 'website/images/vat_wizard.jpg' %}" alt="VAT Wizard"></a>
+
+        <h1>VAT Wizard</h1>
+      </div>
+
+      <header>
+        <h1>Query Results</h1>
+        <nav>
+          <a href="{% url 'home_view' %}">Home</a>
+        </nav>
+      </header>
+      {% if state == 'successful_attempt' %}
+        <div>
+          {{ message }}
+
+          {% if transactions %}
+            <table>
+              <thead>
+                <tr>
+                  <th class="left">Transaction Date</th>
+                  <th class="left">Country</th>
+                  <th class="left">Currency</th>
+                  <th class="left">Transaction Type</th>
+                  <th class="right">Net Amount</th>
+                  <th class="right">VAT Amount</th>
+                  <th class="right">Net Amount (EUR)</th>
+                  <th class="right">Net Amount (EUR)</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for created_at, country, currency, transaction_type, net, vat, net_euro, vat_euro in transactions %}
+                  <tr>
+                    <td class="left">{{ created_at }}</td>
+                    <td class="left">{{ country }}</td>
+                    <td class="left">{{ currency }}</td>
+                    <td class="left">{{ transaction_type }}</td>
+                    <td class="right">{{ net }}</td>
+                    <td class="right">{{ vat }}</td>
+                    <td class="right">{{ net_euro }}</td>
+                    <td class="right">{{ vat_euro }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% elif errors %}
+            <table>
+              <thead>
+                <tr>
+                  <th>Error</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for error in errors %}
+                  <tr>
+                    <td>{{ error }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        </div>
+      {% elif state == 'security_fail' %}
+        {% include 'snippets/api_security_failure.html' %}
+      {% elif state == 'server_error' %}
+        {% include 'snippets/api_error.html' %}
+      {% endif %}
+    </div>
+  </body>
+</html>
