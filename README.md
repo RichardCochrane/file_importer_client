@@ -10,6 +10,7 @@ Run the installation file to set up the project:
     ## Clone the repo
     git clone git@github.com:RichardCochrane/file_importer_client.git
 
+    ## Install the application itself
     (from the root folder)
     ./scripts/install.sh
     cp dev.env .env
